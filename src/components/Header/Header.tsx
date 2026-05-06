@@ -11,7 +11,9 @@ interface NavItemProps {
 const TopNavItem: React.FC<NavItemProps> = ({ label, to, isActive, isDropdown }) => (
   <Link 
     to={to} 
-    className={`cursor-pointer text-[13px] flex items-center gap-1 hover:text-[#6c24b5] transition-colors ${isActive ? 'text-[#6c24b5] font-bold' : 'text-gray-700'}`}
+    className={`cursor-pointer text-[13px] flex items-center gap-1 hover:text-[#6c24b5] transition-colors ${
+      isActive ? 'text-[#6c24b5] font-bold' : 'text-gray-700'
+    }`}
   >
     {label}
     {isDropdown && <span className="text-[10px]">▼</span>}
@@ -21,8 +23,21 @@ const TopNavItem: React.FC<NavItemProps> = ({ label, to, isActive, isDropdown })
 const Navbar: React.FC = () => {
   const location = useLocation();
 
+  // Հիմնական նավիգացիոն կետերը՝ իրենց routing-ով
+  const mainNavItems = [
+    { label: "Վարկեր", path: "/loans" },
+    { label: "Քարտեր", path: "/cards" },
+    { label: "Ավանդներ", path: "/deposits" },
+    { label: "Հաշիվներ", path: "/accounts" },
+    { label: "Փոխանցումներ", path: "/transfers" },
+    { label: "Արժեթղթեր", path: "/securities" },
+    { label: "EvocaSALARY", path: "/salary" },
+    { label: "EvocaTOUCH", path: "/touch" },
+  ];
+
   return (
     <header className="w-full border-b border-gray-200 bg-white font-sans">
+      {/* Top Bar */}
       <div className="flex justify-between items-center px-4 lg:px-20 py-2 border-b border-gray-50">
         <div className="flex items-center gap-6">
           <TopNavItem label="Անհատ" to="/" isActive={location.pathname === "/"} />
@@ -47,21 +62,26 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
+      {/* Main Bar */}
       <div className="flex justify-between items-center px-4 lg:px-20 py-4">
         <div className="flex items-center gap-12">
+          {/* Logo */}
           <Link to="/" className="flex items-center cursor-pointer">
             <span className="text-3xl font-bold tracking-tighter text-gray-400">e</span>
             <span className="text-3xl font-bold tracking-tighter text-[#6c24b5]">voca</span>
           </Link>
 
+          {/* Main Navigation with Routing */}
           <nav className="hidden xl:flex items-center gap-6 text-[15px] font-medium text-gray-900">
-            {["Վարկեր", "Քարտեր", "Ավանդներ", "Հաշիվներ", "Փոխանցումներ", "Արժեթղթեր", "EvocaSALARY", "EvocaTOUCH"].map((item) => (
+            {mainNavItems.map((item) => (
               <Link 
-                key={item} 
-                to={`/${item.toLowerCase()}`} 
-                className="hover:text-[#6c24b5] transition-colors"
+                key={item.path} 
+                to={item.path} 
+                className={`hover:text-[#6c24b5] transition-colors ${
+                  location.pathname === item.path ? 'text-[#6c24b5]' : ''
+                }`}
               >
-                {item}
+                {item.label}
               </Link>
             ))}
             <Link to="/wilco" className="text-gray-900 whitespace-nowrap hover:text-[#6c24b5]">
