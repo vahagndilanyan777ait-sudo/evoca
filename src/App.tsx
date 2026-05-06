@@ -22,6 +22,7 @@ import AvandnerPage from './components/AvandnerPage/AvandnerPage';
 import HashivnerPage from './components/HashivnerPage/HashivnerPage';
 import PoxancumnerPage from './components/PoxancumnerPage/PoxancumnerPage';
 import ArjetxterPage from './components/ArjetxterPage/ArjetxterPage';
+import SalaryPage from './components/SalaryPage/SalaryPage';
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         <Route path="/accounts" element={<HashivnerPage/>} />
         <Route path="/transfers" element={<PoxancumnerPage/>} />
         <Route path="/securities" element={<ArjetxterPage/>} />
+        <Route path="/salary" element={<SalaryPage/>} />
       </Routes>
 
       <Footer />
