@@ -17,6 +17,7 @@ import NewsPage from './components/NewsPage/NewsPage';
 import BlogPage from './components/BlogPage/BlogPage';
 import CareerPage from './components/CareerPage/CareerPage'
 import VarkerPage from './components/VarkerPage/VarkerPage';
+import CardsPage from './components/CardsPage/CardsPage';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="/blog" element={<BlogPage/>} />
         <Route path="/career" element={<CareerPage/>} />
         <Route path="/loans" element={<VarkerPage/>} />
+        <Route path="/cards" element={<CardsPage/>} />
       </Routes>
 
       <Footer />
