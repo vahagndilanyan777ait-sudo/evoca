@@ -18,6 +18,8 @@ import BlogPage from './components/BlogPage/BlogPage';
 import CareerPage from './components/CareerPage/CareerPage'
 import VarkerPage from './components/VarkerPage/VarkerPage';
 import CardsPage from './components/CardsPage/CardsPage';
+import AvandnerPage from './components/AvandnerPage/AvandnerPage';
+import HashivnerPage from './components/HashivnerPage/HashivnerPage';
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
         <Route path="/career" element={<CareerPage/>} />
         <Route path="/loans" element={<VarkerPage/>} />
         <Route path="/cards" element={<CardsPage/>} />
+        <Route path="/deposits" element={<AvandnerPage/>} />
+        <Route path="/accounts" element={<HashivnerPage/>} />
       </Routes>
 
       <Footer />
