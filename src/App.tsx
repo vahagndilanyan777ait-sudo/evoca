@@ -20,6 +20,7 @@ import VarkerPage from './components/VarkerPage/VarkerPage';
 import CardsPage from './components/CardsPage/CardsPage';
 import AvandnerPage from './components/AvandnerPage/AvandnerPage';
 import HashivnerPage from './components/HashivnerPage/HashivnerPage';
+import PoxancumnerPage from './components/PoxancumnerPage/PoxancumnerPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/cards" element={<CardsPage/>} />
         <Route path="/deposits" element={<AvandnerPage/>} />
         <Route path="/accounts" element={<HashivnerPage/>} />
+        <Route path="/transfers" element={<PoxancumnerPage/>} />
       </Routes>
 
       <Footer />
