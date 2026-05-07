@@ -11,7 +11,7 @@ import Newnwes from './components/Newnews/Newnews';
 import Paykurs from './components/Paykurs/Paykurs';
 import Footer from './components/Footer/Footer';
 import BiznesPage from './components/BiznesPage/BiznesPage';
-import SpeedPayPage from './components/SpeedPayPage/SpeedPayPage'; // Ճիշտ import
+import SpeedPayPage from './components/SpeedPayPage/SpeedPayPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import NewsPage from './components/NewsPage/NewsPage';
 import BlogPage from './components/BlogPage/BlogPage';
@@ -31,7 +31,6 @@ function App() {
       <Navbar />
       
       <Routes>
-        {/* Գլխավոր էջ */}
         <Route path="/" element={
           <>
             <Swiper />
@@ -46,13 +45,8 @@ function App() {
           </>
         } />
 
-        {/* Բիզնես էջ */}
         <Route path="/biznes" element={<BiznesPage />} />
-
-        {/* Ակնթարթային վճարումներ (SpeedPay) */}
         <Route path="/speedpay" element={<SpeedPayPage />} />
-
-        {/* Մյուս էջերը */}
         <Route path="/about" element={ <AboutPage/>} />
         <Route path="/news" element={<NewsPage/>} />
         <Route path="/blog" element={<BlogPage/>} />
