@@ -54,11 +54,18 @@ function App() {
         <Route path="/loans" element={<VarkerPage/>} />
         <Route path="/cards" element={<CardsPage/>} />
         <Route path="/deposits" element={<AvandnerPage/>} />
+        <Route path="/deposits-info" element={<AvandnerPage/>} />
         <Route path="/accounts" element={<HashivnerPage/>} />
         <Route path="/transfers" element={<PoxancumnerPage/>} />
         <Route path="/securities" element={<ArjetxterPage/>} />
         <Route path="/salary" element={<SalaryPage/>} />
         <Route path="/touch" element={<TouchPage/>} />
+        <Route path="/cardss" element={<CardsPage/>} />
+        <Route path="/card-service" element={<CardsPage/>} />
+        <Route path="/social-cards" element={<CardsPage/>} />
+        <Route path="/benefits" element={<CardsPage/>} />
+        <Route path="/accounts-max-balance" element={<HashivnerPage/>} />
+        <Route path="/non-resident-service" element={<HashivnerPage/>} />
       </Routes>
 
       <Footer />

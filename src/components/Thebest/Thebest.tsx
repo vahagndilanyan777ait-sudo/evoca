@@ -60,7 +60,7 @@ const BestFromEvoca: React.FC = () => {
           <div className="lg:col-span-4 flex justify-center lg:justify-start">
             <div className="relative">
               <img 
-                src="/path-to-statue-image.png" 
+                src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQDxRm_aXScfAAOWZbnebroclsw2A7UOuOBVTzphLb5oMNl8oXK" 
                 alt="Statue" 
                 className="w-full max-w-[350px] object-contain drop-shadow-2xl"
               />
