@@ -21,29 +21,35 @@ interface DepositCardProps {
 
 // --- Sub-Components ---
 const DepositSection: React.FC<{ deposit: DepositCardProps }> = ({ deposit }) => (
-  <div className="flex flex-col lg:flex-row items-center gap-10 py-16 border-b border-gray-100 last:border-0 w-full animate-fadeIn">
-    <div className="w-full lg:w-[450px] shrink-0">
+  <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 py-8 lg:py-16 border-b border-gray-100 last:border-0 w-full animate-fadeIn">
+    {/* Image Container */}
+    <div className="w-full lg:w-[450px] shrink-0 max-w-md lg:max-w-none mx-auto lg:mx-0">
       <img 
         src={deposit.image} 
         alt={deposit.title} 
-        className="w-full h-auto rounded-[32px] shadow-lg object-cover hover:scale-105 transition-transform duration-500"
+        className="w-full h-auto rounded-[24px] lg:rounded-[32px] shadow-lg object-cover hover:scale-105 transition-transform duration-500"
       />
     </div>
-    <div className="flex-1 w-full">
-      <h2 className="text-[32px] font-black text-gray-900 mb-4">{deposit.title}</h2>
-      <p className="text-[15px] text-gray-500 leading-relaxed mb-10 max-w-[700px]">{deposit.description}</p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 mb-10">
+    
+    {/* Content Container */}
+    <div className="flex-1 w-full text-center lg:text-left">
+      <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-black text-gray-900 mb-3 lg:mb-4">{deposit.title}</h2>
+      <p className="text-sm sm:text-[15px] text-gray-500 leading-relaxed mb-6 lg:mb-10 max-w-[700px] mx-auto lg:mx-0">{deposit.description}</p>
+      
+      {/* Benefits Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-6 gap-x-4 mb-8 lg:mb-10 text-left">
         {deposit.benefits?.map((benefit, idx) => (
-          <div key={idx}>
-            <span className="text-[12px] text-gray-400 block mb-2">{benefit.label}</span>
+          <div key={idx} className="flex flex-col justify-between">
+            <span className="text-[11px] sm:text-[12px] text-gray-400 block mb-1 sm:mb-2 min-h-[32px] lg:min-h-0">{benefit.label}</span>
             <div className="flex items-baseline gap-1 text-[#6c24b5]">
-              <span className="text-[28px] font-bold leading-none">{benefit.value}</span>
-              {benefit.subValue && <span className="text-[20px] font-bold">{benefit.subValue}</span>}
+              <span className="text-2xl sm:text-[28px] font-bold leading-none">{benefit.value}</span>
+              {benefit.subValue && <span className="text-base sm:text-[20px] font-bold">{benefit.subValue}</span>}
             </div>
           </div>
         ))}
       </div>
-      <button className="flex items-center gap-2 bg-[#f3e8ff] hover:bg-[#ebd5ff] text-[#6c24b5] px-10 py-3 rounded-full text-[14px] font-bold transition-all group">
+      
+      <button className="inline-flex items-center gap-2 bg-[#f3e8ff] hover:bg-[#ebd5ff] text-[#6c24b5] px-8 lg:px-10 py-3 rounded-full text-xs sm:text-[14px] font-bold transition-all group">
         Մանրամասն <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
       </button>
     </div>
@@ -87,7 +93,7 @@ const EvocaDepositsPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center text-[#6c24b5] font-bold text-lg">
+      <div className="w-full h-screen flex justify-center items-center text-[#6c24b5] font-bold text-base sm:text-lg">
         Բեռնվում է...
       </div>
     );
@@ -97,40 +103,40 @@ const EvocaDepositsPage: React.FC = () => {
     switch (location.pathname) {
       case "/deposits-info":
         return (
-          <div className="py-6 animate-fadeIn max-w-[1100px] mx-auto text-left">
-            <h2 className="text-[32px] font-black text-gray-900 mb-8">Կարևոր տեղեկատվություն</h2>
+          <div className="py-4 sm:py-6 animate-fadeIn max-w-[1100px] mx-auto text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-black text-gray-900 mb-6 lg:mb-8 text-center sm:text-left">Կարևոր տեղեկատվություն</h2>
             
             <div className="space-y-6">
               {/* Ընդհանուր դրույթներ բաժին */}
-              <section className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
-                <h3 className="text-xl font-bold text-[#6c24b5] mb-6">Ընդհանուր դրույթներ</h3>
+              <section className="bg-white rounded-2xl sm:rounded-3xl border border-gray-100 p-5 sm:p-8 shadow-sm">
+                <h3 className="text-lg sm:text-xl font-bold text-[#6c24b5] mb-4 sm:mb-6">Ընդհանուր դրույթներ</h3>
                 <div className="space-y-4">
                   {generalProvisions.map((text, idx) => (
-                    <div key={idx} className="flex gap-4 items-start border-b border-gray-50 pb-4 last:border-0">
-                      <span className="text-[#6c24b5] font-bold">{idx + 1}.</span>
-                      <p className="text-[14px] text-gray-600 leading-relaxed">{text}</p>
+                    <div key={idx} className="flex gap-3 sm:gap-4 items-start border-b border-gray-50 pb-4 last:border-0">
+                      <span className="text-[#6c24b5] font-bold text-sm sm:text-base">{idx + 1}.</span>
+                      <p className="text-xs sm:text-[14px] text-gray-600 leading-relaxed text-justify sm:text-left">{text}</p>
                     </div>
                   ))}
                 </div>
               </section>
 
               {/* Անհրաժեշտ տեղեկատվություն բաժին */}
-              <section className="bg-[#f8f5ff] rounded-3xl border border-purple-100 p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-tight">Անհրաժեշտ տեղեկատվություն</h3>
-                <div className="grid gap-4">
+              <section className="bg-[#f8f5ff] rounded-2xl sm:rounded-3xl border border-purple-100 p-5 sm:p-8">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6 uppercase tracking-tight text-center sm:text-left">Անհրաժեշտ տեղեկատվություն</h3>
+                <div className="grid gap-3 sm:gap-4">
                   {requiredInfo.map((text, idx) => (
-                    <div key={idx} className="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm">
-                      <div className="w-2 h-2 rounded-full bg-[#6c24b5] shrink-0" />
-                      <p className="text-[14px] text-gray-700 font-medium">{text}</p>
+                    <div key={idx} className="flex items-start sm:items-center gap-3 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-[#6c24b5] shrink-0 mt-1.5 sm:mt-0" />
+                      <p className="text-xs sm:text-[14px] text-gray-700 font-medium">{text}</p>
                     </div>
                   ))}
                 </div>
               </section>
 
               {/* Ծանուցում */}
-              <div className="p-6 bg-blue-50 rounded-2xl flex gap-4 border border-blue-100">
-                <Info className="text-blue-500 shrink-0" size={24} />
-                <p className="text-[13px] text-blue-800 leading-relaxed italic">
+              <div className="p-4 sm:p-6 bg-blue-50 rounded-xl sm:rounded-2xl flex gap-3 sm:gap-4 border border-blue-100">
+                <Info className="text-blue-500 shrink-0" size={22} />
+                <p className="text-[11px] sm:text-[13px] text-blue-800 leading-relaxed italic">
                   Նշված դրույթները ժամկետային ավանդների ներգրավման հաստատված հրապարակային պայմաններն են։ Յուրաքանչյուր ավանդի տեսակի համար կարող են գործել առանձնահատուկ պայմաններ։
                 </p>
               </div>
@@ -141,7 +147,7 @@ const EvocaDepositsPage: React.FC = () => {
       default:
         return (
           <div className="animate-fadeIn">
-            <h1 className="text-[40px] font-black text-gray-900 mb-12">Ավանդներ</h1>
+            <h1 className="text-3xl sm:text-[40px] font-black text-gray-900 mb-6 lg:mb-12 text-center lg:text-left">Ավանդներ</h1>
             <div className="space-y-4">
               {depositData.map((deposit) => (
                 <DepositSection key={deposit.id} deposit={deposit} />
@@ -153,15 +159,15 @@ const EvocaDepositsPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen font-sans">
-      {/* Sticky Sub-Header */}
-      <div className="bg-[#6c24b5] sticky top-0 z-50 shadow-md">
-        <div className="max-w-[1280px] mx-auto px-6 flex gap-8">
+    <div className="bg-white min-h-screen font-sans antialiased">
+      {/* Sticky Sub-Header (Scrollable on Mobile) */}
+      <div className="bg-[#6c24b5] sticky top-0 z-50 shadow-md overflow-x-auto scrollbar-none">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex gap-6 sm:gap-8 whitespace-nowrap">
           {subNavItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`py-5 text-white text-sm font-bold border-b-4 transition-all ${
+              className={`py-4 sm:py-5 text-white text-xs sm:text-sm font-bold border-b-4 transition-all ${
                 location.pathname === item.path ? 'border-white opacity-100' : 'border-transparent opacity-70 hover:opacity-100'
               }`}
             >
@@ -171,20 +177,31 @@ const EvocaDepositsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
-        {/* Breadcrumbs */}
-        <nav className="text-[12px] text-gray-400 mb-8 flex items-center gap-2">
-          <Link to="/" className="hover:text-purple-600">🏠</Link>
-          <span>›</span>
-          <span>Անհատ</span>
-          <span>›</span>
-          <span className="text-gray-900 font-medium">
+      {/* Main Content Workspace */}
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        {/* Breadcrumbs (Scrollable on small screens) */}
+        <nav className="text-[11px] sm:text-[12px] text-gray-400 mb-6 sm:mb-8 flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+          <Link to="/" className="hover:text-purple-600 shrink-0">🏠</Link>
+          <span className="shrink-0">›</span>
+          <span className="shrink-0">Անհատ</span>
+          <span className="shrink-0">›</span>
+          <span className="text-gray-900 font-medium shrink-0">
             {subNavItems.find(i => i.path === location.pathname)?.label || 'Ավանդներ'}
           </span>
         </nav>
 
         {renderContent()}
       </div>
+
+      {/* CSS Utilities */}
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.35s ease-out forwards; }
+        
+        /* Թաքցնում է հորիզոնական scrollbar-ը */
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 };
