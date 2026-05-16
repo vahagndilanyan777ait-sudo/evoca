@@ -2,7 +2,7 @@ import React from 'react';
 
 const OnlineBanking: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#5406df] py-16 px-6 lg:px-20 overflow-hidden flex items-center min-h-[600px] font-sans">
+    <section className="relative w-full bg-[#5406df] py-12 md:py-16 px-4 sm:px-6 lg:px-20 overflow-hidden flex items-center min-h-[550px] lg:min-h-[600px] font-sans">
       
       {/* ---------------- ՖՈՆԱՅԻՆ ԴԵԿՈՐԱՏԻՎ ԷԼԵՄԵՆՏՆԵՐ ---------------- */}
       
@@ -29,7 +29,7 @@ const OnlineBanking: React.FC = () => {
         </svg>
       </div>
 
-      {/* Աջ վերևի շրջված քառակուսի (Rhombus/Cube outline) */}
+      {/* Աջ վերևի շրջված քառակուսի */}
       <div className="absolute top-[12%] right-[5%] opacity-40 hidden md:block">
         <div className="w-12 h-12 border-2 border-white rounded-md transform rotate-[35deg]" />
       </div>
@@ -41,7 +41,7 @@ const OnlineBanking: React.FC = () => {
         </svg>
       </div>
 
-      {/* Կետիկավոր ցանց (Dot Grid) ներքևում՝ սպիտակ կորի տակ */}
+      {/* Կետիկավոր ցանց (Dot Grid) */}
       <div className="absolute bottom-0 left-[17%] opacity-40 z-10 hidden lg:block">
         <div className="grid grid-cols-6 gap-x-2.5 gap-y-1.5 p-4">
           {[...Array(24)].map((_, i) => (
@@ -51,14 +51,13 @@ const OnlineBanking: React.FC = () => {
       </div>
 
       {/* ---------------- ՀԻՄՆԱԿԱՆ ԲՈՎԱՆԴԱԿՈՒԹՅՈՒՆ ---------------- */}
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-20">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-20">
         
         {/* Ձախ հատված՝ Միասնական 3D Բաներ (Banner Graphics) */}
-        <div className="lg:col-span-7 flex justify-center items-center w-full pt-6 md:pt-0">
-          <div className="relative w-full max-w-[580px] rounded-2xl overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.45)] border border-purple-900/10 transition-transform hover:scale-[1.01] duration-300">
-            {/* Քանի որ սա մեկ ամբողջական գրաֆիկական պատկեր է ձախ կողմում */}
+        <div className="lg:col-span-7 flex justify-center items-center w-full order-1 lg:order-1">
+          <div className="relative w-full max-w-[480px] lg:max-w-[580px] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.35)] lg:shadow-[0_30px_50px_rgba(0,0,0,0.45)] border border-purple-900/10 transition-transform hover:scale-[1.01] duration-300">
             <img 
-              src="https://www.evoca.am/images-cache/banners/1/16170067683633/485x304.jpg" // Այս հղումը արդեն պահում է քո նկարի 3-սեգմենտանի տարբերակը
+              src="https://www.evoca.am/images-cache/banners/1/16170067683633/485x304.jpg" 
               alt="Evocabank Online Banking Features" 
               className="w-full h-auto object-cover block"
             />
@@ -66,35 +65,35 @@ const OnlineBanking: React.FC = () => {
         </div>
 
         {/* Աջ հատված՝ Տեքստ և Կոճակներ */}
-        <div className="lg:col-span-5 text-white flex flex-col justify-center space-y-6 lg:pl-4">
-          <h2 className="text-3xl md:text-[40px] font-bold leading-tight tracking-wide">
+        <div className="lg:col-span-5 text-white flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-5 lg:space-y-6 lg:pl-4 order-2 lg:order-2">
+          <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold leading-tight tracking-wide max-w-md lg:max-w-none">
             Օնլայն և մոբայլ բանկինգ
           </h2>
           
-          <p className="text-sm md:text-base opacity-85 leading-relaxed font-normal tracking-wide max-w-xl">
+          <p className="text-xs sm:text-sm md:text-base opacity-85 leading-relaxed font-normal tracking-wide max-w-xl mx-auto lg:mx-0">
             Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ։
           </p>
 
-          <div className="pt-2">
-            <button className="bg-white text-gray-900 px-10 py-3.5 rounded-full font-bold text-sm tracking-wide shadow-md hover:bg-gray-50 transition-all active:scale-95">
+          <div className="pt-1">
+            <button className="bg-white text-gray-900 px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-md hover:bg-gray-50 transition-all active:scale-95">
               Դառնալ հաճախորդ
             </button>
           </div>
 
           {/* QR և Մարկետներ */}
-          <div className="flex flex-row items-center gap-5 pt-4">
-            {/* QR Կոդ */}
-            <div className="bg-white p-2.5 rounded-xl shadow-lg shrink-0">
+          <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 pt-3 w-full">
+            {/* QR Կոդ (Թաքնվում է շատ փոքր հեռախոսների վրա՝ տեղ խնայելու համար) */}
+            <div className="bg-white p-2 rounded-xl shadow-lg shrink-0 hidden sm:block">
               <img 
                 src="https://www.evoca.am/images-cache/banners/1/16136269557179/101x101.png" 
                 alt="QR Code" 
-                className="w-[68px] h-[68px] object-contain" 
+                className="w-[60px] h-[60px] lg:w-[68px] lg:h-[68px] object-contain" 
               />
             </div>
             
             {/* Ներբեռնման կոճակներ */}
-            <div className="flex flex-col space-y-2">
-              <span className="text-[11px] font-semibold tracking-wide text-white/75">
+            <div className="flex flex-col space-y-1.5 text-left">
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-wide text-white/75 text-center sm:text-left">
                 Ներբեռնել հավելվածները՝
               </span>
               <div className="flex flex-row gap-2">
@@ -103,7 +102,7 @@ const OnlineBanking: React.FC = () => {
                   <img 
                     src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
                     alt="Download on the App Store" 
-                    className="h-[34px] w-auto"
+                    className="h-[30px] sm:h-[34px] w-auto"
                   />
                 </a>
                 {/* Google Play */}
@@ -111,7 +110,7 @@ const OnlineBanking: React.FC = () => {
                   <img 
                     src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
                     alt="Get it on Google Play" 
-                    className="h-[34px] w-auto"
+                    className="h-[30px] sm:h-[34px] w-auto"
                   />
                 </a>
               </div>
