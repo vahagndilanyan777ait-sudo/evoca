@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // <--- Ներմուծում ենք hook-ը
 
 interface NavItemProps {
   label: string;
@@ -22,16 +23,24 @@ const TopNavItem: React.FC<NavItemProps> = ({ label, to, isActive, isDropdown })
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  const { t, i18n } = useTranslation(); // <--- ստանում ենք 't' ֆունկցիան և 'i18n' օբյեկտը
+  const [langOpen, setLangOpen] = useState(document.readyState === "complete" ? false : false);
 
-  // Հիմնական նավիգացիոն կետերը՝ իրենց routing-ով
+  // Լեզուն փոխելու ֆունկցիա
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setLangOpen(false);
+  };
+
+  // Հիմնական նավիգացիոն կետերը՝ օգտագործելով t() ֆունկցիան
   const mainNavItems = [
-    { label: "Վարկեր", path: "/loans" },
-    { label: "Քարտեր", path: "/cards" },
-    { label: "Ավանդներ", path: "/deposits" },
-    { label: "Հաշիվներ", path: "/accounts" },
-    { label: "Փոխանցումներ", path: "/transfers" },
-    { label: "Արժեթղթեր", path: "/securities" },
-    { label: "EvocaSALARY", path: "/salary" },
+    { label: t('loans'), path: "/loans" },
+    { label: t('cards'), path: "/cards" },
+    { label: t('deposits'), path: "/deposits" },
+    { label: t('accounts'), path: "/accounts" },
+    { label: t('transfers'), path: "/transfers" },
+    { label: t('securities'), path: "/securities" },
+    { label: "EvocaSALARY", path: "/salary" }, // Եթե անունը չի փոխվում
     { label: "EvocaTOUCH", path: "/touch" },
   ];
 
@@ -40,22 +49,40 @@ const Navbar: React.FC = () => {
       {/* Top Bar */}
       <div className="flex justify-between items-center px-4 lg:px-20 py-2 border-b border-gray-50">
         <div className="flex items-center gap-6">
-          <TopNavItem label="Անհատ" to="/" isActive={location.pathname === "/"} />
-          <TopNavItem label="Բիզնես" to="/biznes" isActive={location.pathname === "/biznes"} />
-          <TopNavItem label="Ակնթարթային վճարումներ" to="/speedpay" isActive={location.pathname === "/speedpay"} />
-          <TopNavItem label="Մեր մասին" to="/about" isActive={location.pathname === "/about"} />
-          <TopNavItem label="Նորություններ" to="/news" isActive={location.pathname === "/news"} />
-          <TopNavItem label="Բլոգ" to="/blog" isActive={location.pathname === "/blog"} />
-          <TopNavItem label="Կարիերա" to="/career" isActive={location.pathname === "/career"} />
+          <TopNavItem label={t('individual')} to="/" isActive={location.pathname === "/"} />
+          <TopNavItem label={t('business')} to="/biznes" isActive={location.pathname === "/biznes"} />
+          <TopNavItem label={t('speedpay')} to="/speedpay" isActive={location.pathname === "/speedpay"} />
+          <TopNavItem label={t('about')} to="/about" isActive={location.pathname === "/about"} />
+          <TopNavItem label={t('news')} to="/news" isActive={location.pathname === "/news"} />
+          <TopNavItem label={t('blog')} to="/blog" isActive={location.pathname === "/blog"} />
+          <TopNavItem label={t('career')} to="/career" isActive={location.pathname === "/career"} />
         </div>
         
         <div className="flex items-center gap-6">
-          <TopNavItem label="Առցանց հայտեր" to="/online-applications" isDropdown />
-          <TopNavItem label="Հետադարձ կապ" to="/contact" isDropdown />
-          <div className="flex items-center gap-4 ml-4 text-gray-600 text-lg">
+          <TopNavItem label={t('onlineApps')} to="/online-applications" isDropdown />
+          <TopNavItem label={t('contact')} to="/contact" isDropdown />
+          
+          <div className="flex items-center gap-4 ml-4 text-gray-600 text-lg relative">
             <span className="cursor-pointer hover:text-black">📍</span>
             <span className="cursor-pointer hover:text-black text-sm font-bold">?</span>
-            <span className="cursor-pointer hover:text-black">🌐</span>
+            
+            {/* Լեզվի Ընտրության Բաժին (🌐) */}
+            <div className="relative">
+              <span 
+                className="cursor-pointer hover:text-black text-base flex items-center gap-1 uppercase font-semibold text-xs border border-gray-300 px-1.5 py-0.5 rounded"
+                onClick={() => setLangOpen(!langOpen)}
+              >
+                🌐 {i18n.language.substring(0, 2)}
+              </span>
+              
+              {langOpen && (
+                <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg py-1 text-sm z-50 min-w-[70px]">
+                  <button onClick={() => changeLanguage('am')} className="block w-full text-left px-3 py-1 hover:bg-gray-100 font-medium text-xs">AM</button>
+                  <button onClick={() => changeLanguage('en')} className="block w-full text-left px-3 py-1 hover:bg-gray-100 font-medium text-xs">EN</button>
+                </div>
+              )}
+            </div>
+
             <span className="cursor-pointer hover:text-black">🔍</span>
             <span className="cursor-pointer hover:text-black">☰</span>
           </div>
@@ -71,7 +98,7 @@ const Navbar: React.FC = () => {
             <span className="text-3xl font-bold tracking-tighter text-[#6c24b5]">voca</span>
           </Link>
 
-          {/* Main Navigation with Routing */}
+          {/* Main Navigation */}
           <nav className="hidden xl:flex items-center gap-6 text-[15px] font-medium text-gray-900">
             {mainNavItems.map((item) => (
               <Link 

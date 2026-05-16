@@ -84,8 +84,8 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="flex flex-col gap-3">
-              <img src="/path-to-appstore.png" alt="App Store" className="h-8 w-auto object-contain" />
-              <img src="/path-to-googleplay.png" alt="Google Play" className="h-8 w-auto object-contain" />
+              <img src="https://apps.apple.com/am/app/evocatouch/id970309076" alt="App Store" className="h-8 w-auto object-contain" />
+              <img src="https://play.google.com/store/apps/details?id=am.prometeybank.mobilebank&hl=en&gl=US" alt="Google Play" className="h-8 w-auto object-contain" />
             </div>
 
             <div className="space-y-4 text-[#6c24b5] font-bold text-sm">

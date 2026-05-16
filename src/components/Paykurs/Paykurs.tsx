@@ -104,7 +104,7 @@ const CurrencyExchange: React.FC = () => {
           <div className="relative group cursor-pointer w-full max-w-[320px]">
             <div className="absolute inset-0 bg-[#6c24b5]/5 rounded-3xl blur-2xl group-hover:bg-[#6c24b5]/10 transition-all" />
             <img 
-              src="/path-to-folded-map-image.png" 
+              src="https://www.evoca.am/img/addresses.png" 
               alt="Map illustration" 
               className="relative w-full drop-shadow-xl transform group-hover:scale-105 transition-transform duration-500"
             />

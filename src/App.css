@@ -1,0 +1,11 @@
+.goog-te-banner-frame.skiptranslate, .goog-te-gadget, #goog-gt-tt {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 interface NewsItem {
   id: number;
   category: string;
@@ -77,12 +78,13 @@ const NewsSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
             Վերջին նորությունները
           </h2>
-          <button className="flex items-center gap-2 bg-[#f3e8ff] text-[#6c24b5] px-6 py-2.5 rounded-full font-bold text-sm hover:bg-[#e9d5ff] transition-colors">
+          
+          <a href='/news' className="flex items-center gap-2 bg-[#f3e8ff] text-[#6c24b5] px-6 py-2.5 rounded-full font-bold text-sm hover:bg-[#e9d5ff] transition-colors">
             Բոլոր նորությունները
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </a>
         </div>
 
         {/* Grid */}

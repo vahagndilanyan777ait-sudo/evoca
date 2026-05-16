@@ -14,6 +14,7 @@ interface SlideItem {
   title: string;
   description: string;
   buttonText: string;
+  link: string;
   image: string;
 }
 
@@ -23,7 +24,64 @@ const slidesData: SlideItem[] = [
     title: "Evoca Travel Card",
     description: "Այս քարտն իր բազմաթիվ առավելություններով կդառնա քո ճամփորդական անբաժան ընկերը",
     buttonText: "Իմանալ ավելին",
+    link: "/cards",
     image: "https://www.evoca.am/images-cache/sliders/1/17480089224912/4012c7541d8db15b5666bb0e4f4bdf7a-576x486.png", // Տեղադրիր քարտի նկարի հղումը
+  },
+  {
+    id: 2,
+    title: "Evoca Աշխատավարձային Նախագիծ",
+    description: "Բեր աշխատավարձդ Evoca: Տար շատ ավելին...",
+    buttonText: "Իմանալ ավելին",
+    link: "/salary",
+    image: "https://www.evoca.am/images-cache/sliders/1/17740137222872/7152cafab4609e8483a365f79ecf04cb-577x486.png", // Տեղադրիր քարտի նկարի հղումը
+  },
+  {
+    id: 3,
+    title: "Կարճ հեռախոսահամար՝ 8444",
+    description: "Բարի գալուստ, Evocabank։ Մենք սպասում ենք Ձեր զանգին․․․",
+    buttonText: "Իմանալ ավելին",
+    link: "/news",
+    image: "https://www.evoca.am/images-cache/sliders/1/17612202124044/b74e87ec0e83aa10cb128d41f0ada026-577x486.png", // Տեղադրիր քարտի նկարի հղումը
+  },
+   {
+    id: 4,
+    title: "Visa Vision",
+    description: "Ձեռք բեր Visa Vision քարտ քո նախընտրած գույնով, դիզայնով ու ոճով և օգտվիր բազմաթիվ առավելություններից",
+    buttonText: "Իմանալ ավելին",
+    link: "/cards",
+    image: "https://www.evoca.am/images-cache/sliders/1/16856146843579/345dd727d7ee28e2cd6ec180e5d65740-577x486.jpg", // Տեղադրիր քարտի նկարի հղումը
+  },
+   {
+    id: 5,
+    title: "Visa Infinite",
+    description: "Ձեռք բեր Visa վճարային համակարգի ամենաբարձր դասի քարտը հենց հիմա",
+    buttonText: "Իմանալ ավելին",
+    link: "/cards",
+    image: "https://www.evoca.am/images-cache/sliders/1/17737433784078/126c54e244e880fd563d8af43979486c-577x485.png", // Տեղադրիր քարտի նկարի հղումը
+  },
+   {
+    id: 6,
+    title: "Հիփոթեքային վարկեր Evocabank-ում` ամենահարմար պայմաններով",
+    description: "Ձե՛ռք բեր քո երազանքի բնակարանը` ցածր տոկոսադրույքով:",
+    buttonText: "Իմանալ ավելին",
+    link: "/loans",
+    image: "https://www.evoca.am/images-cache/sliders/1/16178035964191/79381d3e68fdf7ec25c5837a19ce5821-577x486.jpg", // Տեղադրիր քարտի նկարի հղումը
+  },
+   {
+    id: 7,
+    title: "UnionPay Gold",
+    description: "Ամբողջ աշխարհում քո արագ և հարմար վճարումների ուղեկիցը",
+    buttonText: "Իմանալ ավելին",
+    link: "/cards",
+    image: "https://www.evoca.am/images-cache/sliders/1/17262130779724/2fee1054871280f57daf5204f901c563-577x486.png", // Տեղադրիր քարտի նկարի հղումը
+  },
+   {
+    id: 8,
+    title: "Օնլայն ավանդ EvocaTOUCH հավելվածով",
+    description: "Դի’ր ավանդ Evocabank-ում` բարձր, շա՜տ բարձր տոկոսներով:",
+    buttonText: "Ծանոթանալ պայմաններին",
+    link: "/deposits",
+    image: "https://www.evoca.am/images-cache/sliders/1/16178037539626/79381d3e68fdf7ec25c5837a19ce5821-577x486.jpg", // Տեղադրիր քարտի նկարի հղումը
   },
 ];
 
@@ -65,9 +123,9 @@ const HeroSlider: React.FC = () => {
                 <p className="text-lg text-gray-600 max-w-md mx-auto lg:mx-0">
                   {slide.description}
                 </p>
-                <button className="bg-[#6c24b5] hover:bg-[#5a1e96] text-white px-10 py-3 rounded-full font-bold transition-all transform active:scale-95">
+                <a href={slide.link} className="bg-[#6c24b5] hover:bg-[#5a1e96] text-white px-10 py-3 rounded-full font-bold transition-all transform active:scale-95">
                   {slide.buttonText}
-                </button>
+                </a>
               </div>
 
               {/* Նկարի բլոկ */}
