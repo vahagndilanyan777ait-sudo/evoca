@@ -66,6 +66,7 @@ function App() {
         <Route path="/benefits" element={<CardsPage/>} />
         <Route path="/accounts-max-balance" element={<HashivnerPage/>} />
         <Route path="/non-resident-service" element={<HashivnerPage/>} />
+        
       </Routes>
 
       <Footer />

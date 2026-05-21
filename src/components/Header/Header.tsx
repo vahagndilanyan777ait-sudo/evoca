@@ -54,10 +54,12 @@ const Navbar: React.FC = () => {
     { label: t('securities'), path: "/securities" },
     { label: "EvocaSALARY", path: "/salary" },
     { label: "EvocaTOUCH", path: "/touch" },
+    
   ];
 
   return (
     <header className="w-full border-b border-gray-200 bg-white font-sans antialiased sticky top-0 z-50">
+      <p> usumnakan krknorinak</p>
       {/* Top Bar */}
       <div className="flex justify-between items-center px-4 lg:px-20 py-2 border-b border-gray-50 bg-gray-50/50 overflow-x-auto md:overflow-visible scrollbar-none">
         <div className="flex items-center gap-5 sm:gap-6">
