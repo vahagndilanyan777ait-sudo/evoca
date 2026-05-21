@@ -63,21 +63,24 @@ const MoneyTransfersPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white font-sans antialiased text-gray-900 overflow-x-hidden">
       
-      {/* --- HEADER STICKY TABS --- */}
-      <div className="bg-[#6c24b5] w-full py-4 px-4 md:px-8 sticky top-0 z-50 shadow-md">
-        <div className="max-w-7xl mx-auto flex gap-6 sm:gap-10 text-white text-xs sm:text-sm font-black uppercase tracking-wider">
+      {/* --- HEADER STICKY TABS ---
+          Ուղղված է top-[70px] և md:top-[80px], որպեսզի հիմնական Header-ի վրա չնստի
+          Ավելացվել է overflow-x-auto, որպեսզի mobile-ի վրա սքրոլ լինի էջի պես
+      */}
+      <div className="bg-[#6c24b5] sticky top-[70px] md:top-[80px] z-40 shadow-md overflow-x-auto scrollbar-none">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex gap-6 sm:gap-8 whitespace-nowrap">
           <button 
             onClick={() => setActiveTab('transfers')}
-            className={`pb-1 transition-all border-b-2 ${
-              activeTab === 'transfers' ? 'border-white opacity-100' : 'border-transparent opacity-60 hover:opacity-100'
+            className={`py-4 sm:py-5 text-white text-xs sm:text-sm font-bold border-b-4 transition-all uppercase tracking-wider ${
+              activeTab === 'transfers' ? 'border-white opacity-100' : 'border-transparent opacity-70 hover:opacity-100'
             }`}
           >
             {t('transfers.tab_title', 'Դրամական փոխանցումներ')}
           </button>
           <button 
             onClick={() => setActiveTab('systems')}
-            className={`pb-1 transition-all border-b-2 ${
-              activeTab === 'systems' ? 'border-white opacity-100' : 'border-transparent opacity-60 hover:opacity-100'
+            className={`py-4 sm:py-5 text-white text-xs sm:text-sm font-bold border-b-4 transition-all uppercase tracking-wider ${
+              activeTab === 'systems' ? 'border-white opacity-100' : 'border-transparent opacity-70 hover:opacity-100'
             }`}
           >
             {t('systems.tab_title', 'Վճարային համակարգեր')}
@@ -86,17 +89,17 @@ const MoneyTransfersPage: React.FC = () => {
       </div>
 
       {/* --- MAIN CONTAINER --- */}
-      <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-20 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-xs font-bold text-gray-400 mb-10 overflow-x-auto whitespace-nowrap py-1">
-          <span className="hover:text-[#6c24b5] cursor-pointer transition-colors">🏠</span>
-          <span className="text-gray-300">/</span>
-          <span className="hover:text-[#6c24b5] cursor-pointer transition-colors">{t('bread.individual', 'Անհատ')}</span>
-          <span className="text-gray-300">/</span>
-          <span className="hover:text-[#6c24b5] cursor-pointer transition-colors">{t('bread.transfers', 'Փոխանցումներ')}</span>
-          <span className="text-gray-300">/</span>
-          <span className="text-[#6c24b5]">
+        {/* Breadcrumbs (Scrollable on small screens) */}
+        <nav className="text-[11px] sm:text-[12px] text-gray-400 mb-6 sm:mb-8 flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+          <span className="hover:text-purple-600 cursor-pointer transition-colors shrink-0">🏠</span>
+          <span className="shrink-0">›</span>
+          <span className="hover:text-purple-600 cursor-pointer transition-colors shrink-0">{t('bread.individual', 'Անհատ')}</span>
+          <span className="shrink-0">›</span>
+          <span className="hover:text-purple-600 cursor-pointer transition-colors shrink-0">{t('bread.transfers', 'Փոխանցումներ')}</span>
+          <span className="shrink-0">›</span>
+          <span className="text-gray-900 font-medium shrink-0">
             {activeTab === 'transfers' ? t('transfers.tab_title', 'Դրամական փոխանցումներ') : t('systems.tab_title', 'Վճարային համակարգեր')}
           </span>
         </nav>
@@ -225,6 +228,16 @@ const MoneyTransfersPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* CSS Utilities */}
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.35s ease-out forwards; }
+        
+        /* Թաքցնում է հորիզոնական scrollbar-ը */
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
 
     </div>
   );

@@ -34,7 +34,7 @@ const CardSection: React.FC<CardSectionProps> = ({ card, onOpenDetails }) => {
         <img
           src={card.mainImage}
           alt={card.title}
-          className="w-full max-w-[280px] sm:max-w-[34px] md:max-w-[380px] rounded-2xl shadow-lg lg:shadow-xl hover:scale-105 transition-all duration-300"
+          className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] rounded-2xl shadow-lg lg:shadow-xl hover:scale-105 transition-all duration-300"
         />
       </div>
       
@@ -122,7 +122,7 @@ const CardModal: React.FC<CardModalProps> = ({ card, onClose }) => {
             <img
               src={card.mainImage}
               alt={card.title}
-              className="w-full max-w-[24px] sm:max-w-[320px] md:max-w-[420px] h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
+              className="w-full max-w-[240px] sm:max-w-[320px] md:max-w-[420px] h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
             />
           </div>
 
@@ -267,8 +267,10 @@ const CardsPage: React.FC = () => {
 
   return (
     <div className="w-full font-sans bg-[#faf9fc] min-h-screen antialiased">
-      {/* Մանուշակագույն վերևի սթիքի մենյու */}
-      <div className="w-full bg-[#6c24b5] sticky top-0 z-50 shadow-md">
+      {/* Մանուշակագույն վերևի սթիքի մենյու
+        Ուղղված է top-[70px] և md:top-[80px], որպեսզի գլխավոր հեդերի տակից սկսվի և իրար վրա չնստեն
+      */}
+      <div className="w-full bg-[#6c24b5] sticky top-[70px] md:top-[80px] z-40 shadow-md">
         <div className="max-w-[1440px] mx-auto px-4 lg:px-20 flex overflow-x-auto scrollbar-none">
           {subNavItems.map((item) => {
             const isActive = item.path === "/cards" 

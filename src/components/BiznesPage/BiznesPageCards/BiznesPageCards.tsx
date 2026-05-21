@@ -18,6 +18,9 @@ const BusinessLoans: React.FC = () => {
   const [loansData, setLoansData] = useState<Loan[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  // --- State Մոդալ Պատուհանի համար ---
+  const [activeLoan, setActiveLoan] = useState<Loan | null>(null);
+
   // --- Տվյալների ստացում բազայից ---
   useEffect(() => {
     const loansRef = ref(db, 'businessLoans');
@@ -50,7 +53,7 @@ const BusinessLoans: React.FC = () => {
   }
 
   return (
-    <section className="bg-white min-h-screen font-sans antialiased">
+    <section className="bg-white min-h-screen font-sans antialiased relative">
       {/* Մանուշակագույն Header Banner */}
       <div className="bg-[#6c24b5] py-3 px-4 text-center">
         <h2 className="text-white text-xs sm:text-sm font-bold uppercase tracking-wide">Բիզնես վարկեր</h2>
@@ -81,7 +84,7 @@ const BusinessLoans: React.FC = () => {
                 key={loan.id} 
                 className="flex flex-col lg:flex-row bg-[#f8f9fa] rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-gray-100"
               >
-                {/* Նկարի հատված (Վերևում՝ mobile-ի համար, ձախ կողմում՝ desktop-ի) */}
+                {/* Նկարի հատված */}
                 <div className="w-full lg:w-[400px] bg-white flex items-center justify-center p-6 sm:p-8 shrink-0 border-b lg:border-b-0 lg:border-r border-gray-50">
                   <img 
                     src={loan.imageUrl} 
@@ -117,7 +120,6 @@ const BusinessLoans: React.FC = () => {
                       </div>
 
                       <div>
-                        {/* Հավասարեցնում ենք մյուսների հետ mobile-ում և desktop-ում */}
                         <p className="text-[10px] sm:text-[11px] text-gray-400 uppercase font-semibold block sm:hidden">Տոկոսադրույք</p>
                         <p className="text-xl sm:text-2xl font-black text-[#6c24b5] sm:mt-5">{loan.rate}</p>
                         <p className="text-[10px] sm:text-[11px] text-gray-400 uppercase font-semibold mt-0.5">
@@ -127,9 +129,12 @@ const BusinessLoans: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Կոճակ */}
+                  {/* Կոճակ՝ սեղմելիս բացում է Մոդալը */}
                   <div className="flex justify-center md:justify-start">
-                    <button className="w-full sm:w-fit flex items-center justify-center gap-3 bg-[#eee5f8] text-[#6c24b5] px-8 py-3 rounded-full font-bold text-xs sm:text-sm hover:bg-[#6c24b5] hover:text-white transition-all duration-300 group">
+                    <button 
+                      onClick={() => setActiveLoan(loan)}
+                      className="w-full sm:w-fit flex items-center justify-center gap-3 bg-[#eee5f8] text-[#6c24b5] px-8 py-3 rounded-full font-bold text-xs sm:text-sm hover:bg-[#6c24b5] hover:text-white transition-all duration-300 group"
+                    >
                       Մանրամասն 
                       <span className="text-[10px] sm:text-[12px] group-hover:translate-x-1 transition-transform">❯</span>
                     </button>
@@ -141,10 +146,97 @@ const BusinessLoans: React.FC = () => {
         )}
       </div>
 
-      {/* Օժանդակ ոճեր */}
+      {/* --- ԴԻՆԱՄԻԿ ՄՈԴԱԼ ՊԱՏՈՒՀԱՆ --- */}
+      {activeLoan && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 font-sans antialiased animate-fadeInFast">
+          {/* Մոդալի արտաքին ստվերով բլոկը */}
+          <div className="relative bg-white w-full max-w-[1000px] rounded-[32px] p-6 sm:p-12 flex flex-col md:flex-row gap-8 items-center shadow-2xl animate-scaleUp max-h-[90vh] overflow-y-auto md:overflow-hidden">
+            
+            {/* Փակելու Կոճակ (X) */}
+            <button 
+              onClick={() => setActiveLoan(null)}
+              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full transition-colors z-20"
+            >
+              ✕
+            </button>
+
+            {/* Ձախ Կողմ՝ Տեքստային բովանդակություն */}
+            <div className="flex-1 space-y-6 pt-4 md:pt-0 w-full">
+              <div>
+                <h2 className="text-2xl sm:text-[32px] font-black text-gray-900 tracking-tight mb-4 leading-tight">
+                  {activeLoan.title}
+                </h2>
+                <p className="text-xs sm:text-[15px] text-gray-600 leading-relaxed font-normal text-justify md:text-left">
+                  {activeLoan.description}
+                </p>
+              </div>
+
+              <hr className="border-gray-100" />
+
+              {/* Պարամետրերի Grid-ը մոդալի ներսում */}
+              <div className="grid grid-cols-2 gap-x-6 gap-y-6">
+                {/* Գումար / Սահմանաչափ */}
+                <div className="space-y-1">
+                  <span className="text-[10px] sm:text-[11px] text-gray-400 font-bold uppercase block">
+                    ԳՈՒՄԱՐ / ՍԱՀՄԱՆԱՉԱՓ
+                  </span>
+                  <span className="text-xl sm:text-2xl font-black text-[#6c24b5] block">
+                    {activeLoan.amount}
+                  </span>
+                </div>
+
+                {/* Ժամկետ */}
+                <div className="space-y-1">
+                  <span className="text-[10px] sm:text-[11px] text-gray-400 font-bold uppercase block">
+                    ԺԱՄԿԵՏ
+                  </span>
+                  <span className="text-xl sm:text-2xl font-black text-[#6c24b5] block">
+                    {activeLoan.duration}
+                  </span>
+                </div>
+
+                {/* Տոկոսադրույք */}
+                <div className="space-y-1 col-span-2">
+                  <span className="text-[10px] sm:text-[11px] text-gray-400 font-bold uppercase block">
+                    ՏՈԿՈՍԱԴՐՈՒՅՔ
+                  </span>
+                  <span className="text-xl sm:text-2xl font-black text-[#6c24b5] block">
+                    {activeLoan.rate}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Աջ Կողմ՝ Նկար և Դիմելու կոճակ */}
+            <div className="flex-1 w-full flex flex-col items-center justify-center bg-[#f8f9fa] md:bg-white p-4 md:p-0 rounded-2xl md:rounded-none">
+              <div className="w-full max-w-[360px] flex items-center justify-center p-4">
+                <img
+                  src={activeLoan.imageUrl}
+                  alt={activeLoan.title}
+                  className="w-full h-auto object-contain max-h-[220px] drop-shadow-xl"
+                />
+              </div>
+
+              {/* Օնլայն Դիմելու Կոճակ */}
+              <button className="mt-6 w-full max-w-[280px] bg-[#6c24b5] hover:bg-[#5a1e96] text-white font-bold text-sm py-3.5 px-8 rounded-full shadow-md hover:shadow-lg transition-all transform active:scale-95 text-center">
+                Դիմել Օնլայն
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Օժանդակ ոճեր և Անիմացիաներ */}
       <style>{`
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes fadeInFast { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleUp { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        
+        .animate-fadeInFast { animation: fadeInFast 0.2s ease-out forwards; }
+        .animate-scaleUp { animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       `}</style>
     </section>
   );

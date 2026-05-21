@@ -82,16 +82,21 @@ const InvestmentsPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white font-sans text-[#333] antialiased">
+    <div className="min-h-screen bg-white font-sans text-[#333] antialiased overflow-x-hidden">
       
-      {/* Navigation Tabs (Scrollable on Mobile) */}
-      <div className="bg-[#6c24b5] w-full py-3 px-4 sticky top-0 z-50 overflow-x-auto scrollbar-none shadow-md">
-        <div className="max-w-[1200px] mx-auto flex justify-start md:justify-center items-center gap-4 sm:gap-6 text-white text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+      {/* --- HEADER STICKY TABS ---
+          Ուղղված է top-[70px] և md:top-[80px], որպեսզի հիմնական Header-ի վրա չնստի
+          Ավելացվել է padding և սահմանափակում՝ էջերի հետ նույնությամբ նստելու համար
+      */}
+      <div className="bg-[#6c24b5] sticky top-[70px] md:top-[80px] z-40 shadow-md overflow-x-auto scrollbar-none">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex gap-6 sm:gap-8 whitespace-nowrap">
           {investmentTabs.map((tab) => (
             <button 
               key={tab.id}
               onClick={() => setActiveSubTab(tab.id as TabType)}
-              className={`pb-1 transition-all border-b-2 ${activeSubTab === tab.id ? 'border-white opacity-100' : 'border-transparent opacity-70'}`}
+              className={`py-4 sm:py-5 text-white text-xs sm:text-sm font-bold border-b-4 transition-all uppercase tracking-wider ${
+                activeSubTab === tab.id ? 'border-white opacity-100' : 'border-transparent opacity-70 hover:opacity-100'
+              }`}
             >
               {tab.label}
             </button>
@@ -99,12 +104,17 @@ const InvestmentsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-4 py-4 sm:py-6">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         
         {/* Breadcrumbs (Scrollable on small screens) */}
         <nav className="flex items-center gap-2 text-[11px] sm:text-[12px] text-gray-400 mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
-          <span>🏠</span> › <span>Անհատ</span> › <span>Արժեթղթեր</span> › 
-          <span className="text-[#6c24b5] font-medium">
+          <span className="hover:text-purple-600 cursor-pointer transition-colors shrink-0">🏠</span> 
+          <span className="shrink-0">›</span> 
+          <span className="hover:text-purple-600 cursor-pointer transition-colors shrink-0">Անհատ</span> 
+          <span className="shrink-0">›</span> 
+          <span className="hover:text-purple-600 cursor-pointer transition-colors shrink-0">Արժեթղթեր</span> 
+          <span className="shrink-0">›</span> 
+          <span className="text-gray-900 font-medium shrink-0">
              {activeSubTab === 'services' && 'Ներդրումային ծառայություններ'}
              {activeSubTab === 'bonds' && 'Պարտատոմսեր'}
              {activeSubTab === 'primary-dealer' && 'Հայաստանի կենտրոնական դեպոզիտարիա'}

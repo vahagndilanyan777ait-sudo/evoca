@@ -48,6 +48,11 @@ const resources = {
   }
 };
 
+
+
+
+
+
 i18n
   .use(LanguageDetector) // Ավտոմատ հիշում է ընտրված լեզուն
   .use(initReactI18next) // Կապում է i18next-ը React-ին

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Անհրաժեշտ մոդուլները
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
+
 // Swiper-ի CSS ֆայլերը
 import 'swiper/css';
 import 'swiper/css/navigation';
