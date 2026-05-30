@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const faceImages = [
   'https://www.evoca.am/img/temp/biometric/face3.png',
@@ -9,6 +10,7 @@ const faceImages = [
 
 const FaceChangeHero: React.FC = () => {
   const [currentFaceIndex, setCurrentFaceIndex] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +46,7 @@ const FaceChangeHero: React.FC = () => {
               <path d="M 8,16 C 6,11 10,7 16,7 L 84,7 C 90,7 94,11 92,16 L 54,86 C 52,90 48,90 46,86 Z" />
             </svg>
 
-            {/* Դեմքի Կտրվածքը (Clip-Path)՝ կատարյալ համապատասխանեցված ֆոնին */}
+            {/* Դեմքի Կտրվածքը (Clip-Path) */}
             <div 
               className="absolute inset-0 z-10 overflow-hidden m-[2px]"
               style={{ 
@@ -104,10 +106,14 @@ const FaceChangeHero: React.FC = () => {
         <div className="flex flex-col justify-center text-center md:text-left space-y-6 md:space-y-8 md:col-span-7 lg:pl-6">
           <div className="space-y-4">
             <h1 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-gray-900 leading-[1.2] tracking-tight">
-              Դարձի՛ր <span className="font-extrabold">Evocabank</span>-ի հաճախորդ <span className="text-[#6c24b5]">բիոմետրիկ</span> նույնականացմամբ
+              {t('biometricHero.titlePart1')}
+              <span className="font-extrabold">{t('biometricHero.titleBank')}</span>
+              {t('biometricHero.titlePart2')}
+              <span className="text-[#6c24b5]">{t('biometricHero.titleBiometric')}</span>
+              {t('biometricHero.titlePart3')}
             </h1>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-xl mx-auto md:mx-0">
-              Սկանավորի՛ր QR կոդը, ներբեռնի՛ր EvocaTOUCH հարմարավետ հավելվածը, ստեղծի՛ր քո հաշիվը և ստացի՛ր քարտ առանց բանկ այցելելու:
+              {t('biometricHero.description')}
             </p>
           </div>
 
@@ -126,10 +132,10 @@ const FaceChangeHero: React.FC = () => {
             {/* Գործողության կոճակ և ուղեցույց */}
             <div className="w-full sm:w-auto flex flex-col items-center sm:items-start space-y-2">
               <button className="w-full sm:w-auto bg-[#6c24b5] hover:bg-[#581c94] text-white px-10 py-3.5 rounded-full font-bold text-sm transition-all shadow-sm hover:shadow-md active:scale-98 tracking-wide">
-                Իմանալ ավելին
+                {t('biometricHero.buttonText')}
               </button>
               <span className="text-[11px] text-gray-400 font-semibold tracking-wider uppercase hidden sm:inline-flex items-center gap-1.5">
-                <span className="animate-pulse">←</span> Սկանավորիր հավելվածի համար
+                <span className="animate-pulse">←</span> {t('biometricHero.qrGuide')}
               </span>
             </div>
 
