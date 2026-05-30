@@ -132,7 +132,7 @@ const CurrencyExchange: React.FC = () => {
                         <div className="w-6 h-4 bg-gray-100 rounded-sm overflow-hidden shadow-sm flex items-center justify-center border border-gray-200/60">
                           {cur.flag ? cur.flag : <span className="text-[8px] text-gray-400">🪙</span>}
                         </div>
-                        {cur.code}
+                        {t(`exchange.codes.${cur.code}`, cur.code)}
                       </div>
                       <div className="text-center font-bold text-gray-800 text-sm sm:text-base">
                         <span className="text-[9px] text-red-500 mr-1">▼</span>{cur.buy.toFixed(2)}
@@ -145,8 +145,12 @@ const CurrencyExchange: React.FC = () => {
                 </div>
 
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100 text-xs font-bold">
-                  <span className="text-gray-400 text-[11px]">Թարմացվել է՝ 16.05.2026</span>
-                  <button className="text-[#6c24b5] hover:text-[#521b8c] transition-colors">{t('exchange.more', 'Այլ արժույթներ')}</button>
+                  <span className="text-gray-400 text-[11px]">
+                    {t('exchange.updatedAt', 'Թարմացվել է՝')} 16.05.2026
+                  </span>
+                  <button className="text-[#6c24b5] hover:text-[#521b8c] transition-colors">
+                    {t('exchange.more', 'Այլ արժույթներ')}
+                  </button>
                 </div>
               </div>
 
@@ -155,7 +159,9 @@ const CurrencyExchange: React.FC = () => {
                 
                 {/* Ունեմ (Input Amount) */}
                 <div className="space-y-1.5">
-                  <label className="text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">{t('exchange.have', 'Ունեմ')}</label>
+                  <label className="text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">
+                    {t('exchange.have', 'Ունեմ')}
+                  </label>
                   <div className="flex items-center justify-between border border-gray-200 rounded-2xl px-4 py-3 bg-gray-50/50 focus-within:border-[#6c24b5] focus-within:bg-white transition-all">
                     <input 
                       type="number" 
@@ -169,13 +175,13 @@ const CurrencyExchange: React.FC = () => {
                       className="bg-transparent font-black text-[#6c24b5] outline-none text-sm cursor-pointer ml-2"
                     >
                       {activeTab === 'gold' ? (
-                        <option value="XAU">XAU</option>
+                        <option value="XAU">{t('exchange.codes.XAU', 'XAU')}</option>
                       ) : (
                         <>
-                          <option value="USD">USD</option>
-                          <option value="AMD">AMD</option>
-                          <option value="EUR">EUR</option>
-                          <option value="RUB">RUB</option>
+                          <option value="USD">{t('exchange.codes.USD', 'USD')}</option>
+                          <option value="AMD">{t('exchange.codes.AMD', 'AMD')}</option>
+                          <option value="EUR">{t('exchange.codes.EUR', 'EUR')}</option>
+                          <option value="RUB">{t('exchange.codes.RUB', 'RUB')}</option>
                         </>
                       )}
                     </select>
@@ -184,7 +190,9 @@ const CurrencyExchange: React.FC = () => {
 
                 {/* Կստանամ (Output Result) */}
                 <div className="space-y-1.5">
-                  <label className="text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">{t('exchange.get', 'Կստանամ')}</label>
+                  <label className="text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">
+                    {t('exchange.get', 'Կստանամ')}
+                  </label>
                   <div className="flex items-center justify-between border border-gray-200 rounded-2xl px-4 py-3 bg-gray-50/30">
                     <input 
                       type="text" 
@@ -197,12 +205,12 @@ const CurrencyExchange: React.FC = () => {
                       onChange={(e) => setToCurrency(e.target.value)}
                       className="bg-transparent font-black text-[#6c24b5] outline-none text-sm cursor-pointer ml-2"
                     >
-                      <option value="AMD">AMD</option>
+                      <option value="AMD">{t('exchange.codes.AMD', 'AMD')}</option>
                       {activeTab !== 'gold' && (
                         <>
-                          <option value="USD">USD</option>
-                          <option value="EUR">EUR</option>
-                          <option value="RUB">RUB</option>
+                          <option value="USD">{t('exchange.codes.USD', 'USD')}</option>
+                          <option value="EUR">{t('exchange.codes.EUR', 'EUR')}</option>
+                          <option value="RUB">{t('exchange.codes.RUB', 'RUB')}</option>
                         </>
                       )}
                     </select>
@@ -217,8 +225,12 @@ const CurrencyExchange: React.FC = () => {
         {/* Աջ հատված՝ Քարտեզ և Մեր հասցեները (4/12 Սյունակ) */}
         <div className="lg:col-span-4 flex flex-col justify-between space-y-8 lg:space-y-0 lg:py-2">
           <div className="space-y-2 text-center lg:text-left">
-            <h3 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">{t('addresses.title', 'Մեր հասցեները')}</h3>
-            <p className="text-gray-400 text-xs sm:text-sm font-medium">{t('addresses.subtitle', 'Բանկի հասցեները, աշխատաժամերը, բանկոմատները')}</p>
+            <h3 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
+              {t('addresses.title', 'Մեր հասցեները')}
+            </h3>
+            <p className="text-gray-400 text-xs sm:text-sm font-medium">
+              {t('addresses.subtitle', 'Բանկի հասցեները, աշխատաժամերը, բանկոմատները')}
+            </p>
           </div>
 
           {/* Map Image Container */}

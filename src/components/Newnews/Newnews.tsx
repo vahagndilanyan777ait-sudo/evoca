@@ -52,29 +52,29 @@ const NewsCard: React.FC<{ item: NewsItem }> = ({ item }) => (
 const NewsSection: React.FC = () => {
   const { t } = useTranslation();
 
-  // Տվյալները կոմպոնենտի ներսում են՝ i18next-ի դինամիկ թարգմանությունն ապահովելու համար
+  // Տվյալները կապված են i18n-ի հետ՝ լիարժեք բազմալեզու աջակցման համար
   const newsData: NewsItem[] = [
     {
       id: 1,
-      category: t('news.lifestyle', 'Կենսակերպ'),
+      category: t('newsSection.lifestyle', 'Կենսակերպ'),
       categoryColor: "bg-[#22c55e]", // Մաքուր Tailwind green-500
-      title: "Evocabank-ը մասնակցում է CCF 2026-ին",
+      title: t('newsSection.items.ccf', 'Evocabank-ը մասնակցում է CCF 2026-ին'),
       date: "17.04.2026",
       image: "https://www.evoca.am/images-cache/news/1/1776423301974/439x320.png"
     },
     {
       id: 2,
-      category: t('news.banking', 'Բանկային'),
+      category: t('newsSection.banking', 'Բանկային'),
       categoryColor: "bg-[#6c24b5]", // Evoca Purple
-      title: "Կարեն Եղիազարյանը՝ IMF և WBG Spring Meetings 2026-ին",
+      title: t('newsSection.items.imf', 'Կարեն Եղիազարյանը՝ IMF և WBG Spring Meetings 2026-ին'),
       date: "13.04.2026",
       image: "https://www.evoca.am/images-cache/news/1/1776162446379/439x320.png"
     },
     {
       id: 3,
-      category: t('news.lifestyle', 'Կենսակերպ'),
+      category: t('newsSection.lifestyle', 'Կենսակերպ'),
       categoryColor: "bg-[#22c55e]",
-      title: "Evoca-ն մասնակցում է Leasing Expo 2026-ին",
+      title: t('newsSection.items.leasing', 'Evoca-ն մասնակցում է Leasing Expo 2026-ին'),
       date: "09.04.2026",
       image: "https://www.evoca.am/images-cache/news/1/17758068998241/439x320.png"
     }
@@ -87,14 +87,14 @@ const NewsSection: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
-            {t('news.latestTitle', 'Վերջին նորությունները')}
+            {t('newsSection.latestTitle', 'Վերջին նորությունները')}
           </h2>
           
           <Link 
             to="/news" 
             className="inline-flex items-center gap-2 bg-[#6c24b5]/5 text-[#6c24b5] px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-[#6c24b5] hover:text-white transition-all duration-300 group shadow-sm shrink-0"
           >
-            {t('news.viewAll', 'Բոլոր նորությունները')}
+            {t('newsSection.viewAll', 'Բոլոր նորությունները')}
             <svg 
               className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" 
               fill="none" 

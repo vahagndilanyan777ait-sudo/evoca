@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const OnlineBanking: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative w-full bg-[#5406df] py-12 md:py-16 px-4 sm:px-6 lg:px-20 overflow-hidden flex items-center min-h-[550px] lg:min-h-[600px] font-sans">
       
@@ -67,22 +70,22 @@ const OnlineBanking: React.FC = () => {
         {/* Աջ հատված՝ Տեքստ և Կոճակներ */}
         <div className="lg:col-span-5 text-white flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-5 lg:space-y-6 lg:pl-4 order-2 lg:order-2">
           <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold leading-tight tracking-wide max-w-md lg:max-w-none">
-            Օնլայն և մոբայլ բանկինգ
+            {t('onlineBanking.title')}
           </h2>
           
           <p className="text-xs sm:text-sm md:text-base opacity-85 leading-relaxed font-normal tracking-wide max-w-xl mx-auto lg:mx-0">
-            Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ։
+            {t('onlineBanking.description')}
           </p>
 
           <div className="pt-1">
             <button className="bg-white text-gray-900 px-8 sm:px-10 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm tracking-wide shadow-md hover:bg-gray-50 transition-all active:scale-95">
-              Դառնալ հաճախորդ
+              {t('onlineBanking.becomeClientBtn')}
             </button>
           </div>
 
           {/* QR և Մարկետներ */}
           <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 pt-3 w-full">
-            {/* QR Կոդ (Թաքնվում է շատ փոքր հեռախոսների վրա՝ տեղ խնայելու համար) */}
+            {/* QR Կոդ */}
             <div className="bg-white p-2 rounded-xl shadow-lg shrink-0 hidden sm:block">
               <img 
                 src="https://www.evoca.am/images-cache/banners/1/16136269557179/101x101.png" 
@@ -94,7 +97,7 @@ const OnlineBanking: React.FC = () => {
             {/* Ներբեռնման կոճակներ */}
             <div className="flex flex-col space-y-1.5 text-left">
               <span className="text-[10px] sm:text-[11px] font-semibold tracking-wide text-white/75 text-center sm:text-left">
-                Ներբեռնել հավելվածները՝
+                {t('onlineBanking.downloadApps')}
               </span>
               <div className="flex flex-row gap-2">
                 {/* App Store */}

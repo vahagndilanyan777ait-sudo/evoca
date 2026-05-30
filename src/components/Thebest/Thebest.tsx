@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface CardProps {
   category: string;
@@ -23,28 +24,10 @@ const InfoCard: React.FC<CardProps> = ({ category, title, description }) => (
 );
 
 const BestFromEvoca: React.FC = () => {
-  const cardsData: CardProps[] = [
-    {
-      category: "Թվային քարտեր",
-      title: "Evoca Digital քարտ",
-      description: "Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածում։ Ակտիվացրու այն հիմա և ընտրիր քո սիրելի դիզայնը։"
-    },
-    {
-      category: "Նվեր քարտեր",
-      title: "Evoca Gift Card",
-      description: "Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը։ Քարտը հարմար է բոլոր առիթների համար։"
-    },
-    {
-      category: "Նոր հավելված",
-      title: "EvocaTOUCH 2",
-      description: "EvocaTOUCH-ը պարզապես բանկային հավելված չէ, վստահ ենք՝ այն քեզ համար դառնալու է ապրելակերպ։"
-    },
-    {
-      category: "Օնլայն վճարումներ",
-      title: "Արագ online վճարումներ",
-      description: "Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով՝ պարզ և արագ։ Այն հասանելի է 24/7։"
-    }
-  ];
+  const { t } = useTranslation();
+
+  // Ստեղծում ենք 4 տարրից բաղկացած դատարկ զանգված՝ i18n-ից ըստ ինդեքսի կարդալու համար
+  const cardsIndexes = [0, 1, 2, 3];
 
   return (
     <section className="relative w-full bg-[#6c24b5] py-12 sm:py-16 lg:py-20 overflow-hidden min-h-[600px] flex items-center">
@@ -66,7 +49,7 @@ const BestFromEvoca: React.FC = () => {
                 alt="Statue" 
                 className="w-full h-auto object-contain drop-shadow-2xl"
               />
-              {/* Դեկորատիվ երկրաչափական պատկերներ (մոբայլում ավելի հավաքված) */}
+              {/* Դեկորատիվ երկրաչափական պատկերներ */}
               <div className="absolute top-6 -left-6 w-8 h-8 sm:w-12 sm:h-12 bg-purple-400 opacity-30 rotate-45 animate-pulse" />
               <div className="absolute bottom-12 -right-3 w-4 h-4 sm:w-6 sm:h-6 bg-yellow-400 rounded-full" />
             </div>
@@ -75,16 +58,16 @@ const BestFromEvoca: React.FC = () => {
           {/* Աջ հատված՝ Վերնագիր և Քարտեր */}
           <div className="lg:col-span-8 w-full">
             <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 text-center lg:text-left tracking-wide">
-              Լավագույնը Evocabank-ից
+              {t('bestFromEvoca.sectionTitle')}
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              {cardsData.map((card, index) => (
+              {cardsIndexes.map((index) => (
                 <InfoCard 
                   key={index}
-                  category={card.category}
-                  title={card.title}
-                  description={card.description}
+                  category={t(`bestFromEvoca.cards.${index}.category`)}
+                  title={t(`bestFromEvoca.cards.${index}.title`)}
+                  description={t(`bestFromEvoca.cards.${index}.description`)}
                 />
               ))}
             </div>
